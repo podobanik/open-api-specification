@@ -1,0 +1,150 @@
+openapi: "3.0.0"
+info:
+  title: "Spaceflight News"
+  description: "Get documentation for the Spaceflight News"
+  version: 1.0.0
+servers:
+  - url: "https://api.spaceflightnewsapi.net/v3/"
+paths:
+  /articles:
+    get:
+      tags:
+      - "Articles"
+      summary: "List of articles about space"
+      description: "Lists of articles"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Articles'
+  /articles/{id}:
+    get:
+      tags:
+      - "Articles"
+      summary: "Aricle"
+      description: "Article"
+      parameters:
+        - name: id 
+          in: path
+          required: true
+          example: "33"
+          schema:
+            type: string
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+                
+  /info:
+    get:
+      tags:
+      - "Info"
+      summary: "Info"
+      description: "Info"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+components:
+  schemas:
+    Articles:
+      type: object
+      properties: 
+        id: 
+          type: integer
+        featured:
+          type: boolean
+          default: false
+        title: 
+          type: string
+        url: 
+          type: string
+        imageUrl:
+          type: string
+        newsSite:
+          type: string
+        summary:
+          type: string
+        publishedAt:
+          type: string
+              
+              
+        launches: 
+          type: array
+          items: 
+            type: object
+            properties:
+              id:
+                type: string
+              provider:
+                type: string
+        
+        events: 
+          type: array
+          items: 
+            type: object
+            properties:
+              id:
+                type: string
+              provider:
+                type: string
+    Article:
+      type: object
+      properties: 
+        id: 
+          type: integer
+        featured:
+          type: boolean
+          default: false
+        title: 
+          type: string
+        url: 
+          type: string
+        imageUrl:
+          type: string
+        newsSite:
+          type: string
+        summary:
+          type: string
+        publishedAt:
+          type: string
+              
+              
+        launches: 
+          type: array
+          items: 
+            type: object
+            properties:
+              id:
+                type: string
+              provider:
+                type: string
+        
+        events: 
+          type: array
+          items: 
+            type: object
+            properties:
+              id:
+                type: string
+              provider:
+                type: string        
+    Info:
+      type: object
+      properties:
+        version: 
+          type: string
+        newsSites: 
+          type: array
+          items:
+            type: string
+            
